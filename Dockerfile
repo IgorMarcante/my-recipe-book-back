@@ -1,20 +1,12 @@
-# Usa uma imagem base do Ubuntu (Debian-based)
-FROM ubuntu:22.04
-
-# Instala dependências e configura o repositório do Corretto
-RUN apt-get update && \
-    apt-get install -y wget gnupg software-properties-common && \
-    wget -O - https://apt.corretto.aws/corretto.key | gpg --dearmor -o /usr/share/keyrings/corretto-keyring.gpg && \
-    echo "deb [signed-by=/usr/share/keyrings/corretto-keyring.gpg] https://apt.corretto.aws stable main" | tee /etc/apt/sources.list.d/corretto.list && \
-    apt-get update && \
-    apt-get install -y java-24-amazon-corretto-jdk
-
-# Define o diretório de trabalho
+# Estágio 1: Compila o JAR
+FROM amazoncorretto:24-alpine3.18-jdk as builder
 WORKDIR /app
+COPY . .
+RUN ./mvnw clean package  # Ou comando do Gradle
 
-# Copia o JAR da aplicação
-COPY target/*.jar app.jar
-
-# Expõe a porta e executa a aplicação
+# Estágio 2: Imagem final
+FROM amazoncorretto:24-alpine3.18-jre
+WORKDIR /app
+COPY --from=builder /app/target/*.jar app.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
