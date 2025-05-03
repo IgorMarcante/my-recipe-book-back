@@ -16,7 +16,7 @@ public class IngredientDTO {
     private String name;
 
     @NotNull(message = "Quantity is mandatory")
-    private Double quantity;
+    private String quantity;
 
     @NotBlank(message = "Unit is mandatory")
     private String unit;

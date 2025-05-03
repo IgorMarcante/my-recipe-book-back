@@ -21,7 +21,7 @@ public class Ingredient {
     private String name;
 
     @NotNull(message = "Quantidade é obrigatório")
-    private Double quantity;
+    private String quantity;
 
     @NotBlank(message = "Unidade é obrigatório")
     private String unit;

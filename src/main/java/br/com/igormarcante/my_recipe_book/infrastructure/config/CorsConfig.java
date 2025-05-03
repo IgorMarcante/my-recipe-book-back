@@ -1,4 +1,4 @@
-package br.com.igormarcante.my_recipe_book;
+package br.com.igormarcante.my_recipe_book.infrastructure.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

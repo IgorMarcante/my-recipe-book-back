@@ -8,7 +8,7 @@ import br.com.igormarcante.my_recipe_book.appplication.service.RecipeService;
 import br.com.igormarcante.my_recipe_book.domain.entity.Ingredient;
 import br.com.igormarcante.my_recipe_book.domain.entity.PrepStep;
 import br.com.igormarcante.my_recipe_book.domain.entity.Recipe;
-import br.com.igormarcante.my_recipe_book.domain.repository.RecipeRepository;
+import br.com.igormarcante.my_recipe_book.infrastructure.persistence.RecipeRepository;
 
 import jakarta.transaction.Transactional;
 
