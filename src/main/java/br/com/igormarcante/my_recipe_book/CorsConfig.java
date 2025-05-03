@@ -15,10 +15,10 @@ public class CorsConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("*") // Origem correta do frontend
+                .allowedOriginPatterns("https://*.railway.app", "http://localhost:[*]")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true)
-                .maxAge(3600); // Cache da preflight por 1 hora
+                .maxAge(3600);
     }
 }
